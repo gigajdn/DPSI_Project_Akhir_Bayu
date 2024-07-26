@@ -4,10 +4,13 @@ const loanController = require('../controllers/loanController');
 const authMiddleware = require('../middlewares/authMiddleware');
 const loanMiddleware = require('../middlewares/loanMiddleware');
 
-router.get('/', authMiddleware, loanController.getAllLoans);
-router.get('/:id', authMiddleware, loanController.getLoanById);
-router.post('/', authMiddleware, loanMiddleware, loanController.createLoan);
-router.put('/:id', authMiddleware, loanController.updateLoan);
-router.delete('/:id', authMiddleware, loanController.deleteLoan);
+// Routes accessible to both staff and members
+router.get('/', authMiddleware(['staff', 'member']), loanController.getAllLoans);
+router.get('/:id', authMiddleware(['staff', 'member']), loanController.getLoanById);
+
+// Routes accessible to staff only
+router.post('/', authMiddleware(['staff']), loanMiddleware, loanController.createLoan);
+router.put('/:id', authMiddleware(['staff']), loanController.updateLoan);
+router.delete('/:id', authMiddleware(['staff']), loanController.deleteLoan);
 
 module.exports = router;
