@@ -2,6 +2,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Staff = require('../models/Staff');
 const Member = require('../models/Member');
+const Student = require('../models/Student');
+const Public = require('../models/Public');
+
 
 // Register a new staff
 exports.registerStaff = async (req, res) => {
