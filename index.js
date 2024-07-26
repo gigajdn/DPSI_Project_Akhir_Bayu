@@ -20,6 +20,10 @@ app.use('/api/loans', require('./routes/loanRoutes'));
 app.use('/api/staff', require('./routes/staffRoutes'));
 app.use('/api/auth', require('./routes/authRoutes'));
 
+app.get('/', (req, res) => {
+    res.send('Welcome to Library System API');
+  });
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
